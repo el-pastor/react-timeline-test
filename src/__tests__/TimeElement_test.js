@@ -1,7 +1,7 @@
 import React from 'react';
 import {render} from '@testing-library/react';
 import {mockAllIsIntersecting} from 'react-intersection-observer/test-utils';
-import {TimelineElement} from '../TimelineElement';
+import {TimelineElement} from '../Components/TimelineElement';
 
 beforeEach(() => {
     mockAllIsIntersecting(true);

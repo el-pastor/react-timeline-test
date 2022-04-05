@@ -1,4 +1,4 @@
-import {FixedQueue} from '../FixedQueue';
+import {FixedQueue} from '../Utils/FixedQueue';
 
 const testBigArray = [1, 2, 3, 4, 5, 6, 7, 8, 9]
 

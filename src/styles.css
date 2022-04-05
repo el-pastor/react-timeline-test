@@ -1,5 +1,5 @@
-@import "./timeline.css";
-@import "./timelineElement.css";
+@import "./Components/timeline.css";
+@import "./Components/timelineElement.css";
 
 body {
   margin: 0.5rem 0.5rem 0;

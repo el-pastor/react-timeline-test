@@ -1,17 +1,18 @@
 import React, {useState} from "react";
 import axios from "axios";
-import {FixedQueue} from "./FixedQueue";
+import {FixedQueue} from "./Utils/FixedQueue";
 
-import Timeline from "./Timeline";
-import {ITimelineElement, TimelineElement} from "./TimelineElement";
+import Timeline from "./Components/Timeline";
+import {ITimelineElement, TimelineElement} from "./Components/TimelineElement";
 import "./styles.css";
-import "./timeline.css";
-import "./timelineElement.css";
-import {useInterval} from "./useInterval";
-import {accessibleColours} from "./accessibleColours";
+import "./Components/timeline.css";
+import "./Components/timelineElement.css";
+import {useInterval} from "./Utils/useInterval";
+import {accessibleColours} from "./Utils/accessibleColours";
+import {Settings} from "./Utils/settings";
 
 export default function App() {
-    const [posts, setPosts] = useState(FixedQueue(5, []));
+    const [posts, setPosts] = useState(FixedQueue(Settings.elementsInTimeline, []));
     let [colour, setColour] = useState(0);
 
     const fetchPosts = async () => {
@@ -30,14 +31,14 @@ export default function App() {
                     };
                 })
                 .reverse();
-            const test = FixedQueue(5, []);
+            const test = FixedQueue(Settings.elementsInTimeline, []);
             test.unshift(...initial);
             setPosts(test);
         } else {
             const response = await axios(
                 "https://api.coindesk.com/v1/bpi/currentprice.json"
             );
-            const test = FixedQueue(5, posts);
+            const test = FixedQueue(Settings.elementsInTimeline, posts);
             test.unshift({
                 date: response.data.time.updatedISO,
                 value: response.data.bpi.USD.rate,
@@ -54,7 +55,7 @@ export default function App() {
         () => {
             fetchPosts();
         },
-        posts.length === 0 ? 50 : 5000
+        posts.length === 0 ? Settings.initialTime : Settings.interval
     );
 
     // @ts-ignore
