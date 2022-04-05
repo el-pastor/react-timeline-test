@@ -1,0 +1,8 @@
+build/
+dist/
+node_modules/
+*.tsbuildinfo
+/.idea/
+*.iml
+.DS_Store
+package-lock.json
